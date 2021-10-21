@@ -9,8 +9,8 @@ class UserController {
         const service = new ShowUserService()
 
         try{
-            const result = service.execute(user_id)
-        
+            const result = await service.execute(user_id)
+
             return res.json(result)
         }catch(err){
             return res.status(404).json({error: err.message})

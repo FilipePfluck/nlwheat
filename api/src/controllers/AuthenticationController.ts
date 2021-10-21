@@ -12,6 +12,7 @@ class AuthenticationController {
 
             return res.json(result)
         }catch(err){
+
             return res.status(500).json({error: err})
         }   
     }

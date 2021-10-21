@@ -1,25 +1,29 @@
-import 'dotenv/config'
-import express from 'express'
-import { Server } from 'socket.io'
-import http from 'http'
-import cors from 'cors'
+import "dotenv/config";
+import express from "express";
+import http from "http";
+import cors from "cors";
 
-import { router } from './routes'
+import { Server } from "socket.io";
 
-const app = express()
+import { router } from "./routes";
 
-app.use(router)
-app.use(express.json())
-app.use(cors())
+const app = express();
+app.use(cors());
 
-export const serverHttp = http.createServer(app)
+const serverHttp = http.createServer(app);
 
-export const io = new Server(serverHttp, {
-    cors: {
-        origin: "*"
-    }
-})
+const io = new Server(serverHttp, {
+  cors: {
+    origin: "*",
+  },
+});
 
-io.on("connection", socket => {
-    console.log(`Usuário conectado no socker ${socket.id}`)
-})
+io.on("connection", (socket) => {
+  console.log(`Usuário conectado no socket ${socket.id}`);
+});
+
+app.use(express.json());
+
+app.use(router);
+
+export { serverHttp, io };
