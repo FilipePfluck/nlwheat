@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { motion } from 'framer-motion'
+
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -9,15 +11,6 @@ export const Container = styled.div`
     >img{
         height: 28px;
         margin: 32px 0;
-    }
-
-    ul{
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-        flex: 1;
-        justify-content: center;
     }
 
     @media(max-width: 960px){
@@ -30,7 +23,16 @@ export const Container = styled.div`
     }
 `
 
-export const Message = styled.li`
+export const List = styled(motion.ul)`
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    flex: 1;
+    justify-content: center;
+`
+
+export const Message = styled(motion.li)`
     max-width: 440px;
 
     p{
